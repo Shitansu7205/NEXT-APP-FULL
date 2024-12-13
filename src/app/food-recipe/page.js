@@ -46,7 +46,7 @@ const Foodapp = () => {
 
 
 
-        console.log(data.hits)
+        // console.log(data.hits)
         // console.log(recipe)
     };
 
