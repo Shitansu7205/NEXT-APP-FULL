@@ -3,8 +3,9 @@
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
+import Image from 'next/image'
 
-const page = () => {
+const Contact = () => {
 
 
     const [name, setName] = useState('')
@@ -63,13 +64,7 @@ const page = () => {
 
 return (
     <>
-        {/* <form className='mt-28 flex flex-col w-1/5 mx-auto'>
-                <label htmlFor="mail">Enter Name</label>
-                <input type="text" value={name} onChange={nameChange} className='text-black' required />
-                <label htmlFor="mail">Enter Mail</label>
-                <input type="mail" value={mail} onChange={mailChange} className='text-black' required />
-                <input type="submit" value="submit" onClick={handleSubmit} className='mt-4 bg-blue-500 ' />
-            </form> */}
+      
 
 
 
@@ -82,7 +77,7 @@ return (
                 <div className="lg:flex lg:items-center lg:justify-center lg:w-full lg:max-w-5xl">
                     <div className="lg:w-1/2 lg:mx-6">
 
-                        <img class="hidden object-cover rounded-full lg:block shrink-0 w-60 h-60" src="https://media.licdn.com/dms/image/v2/C5603AQH_BDCDNxP4zQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1661054452151?e=1735171200&v=beta&t=SQbAI69I8LSzBqwRrOlHmT0Vq7kkEtlURJFebkkaujw" alt="" />
+                        <Image className="hidden object-cover rounded-full lg:block shrink-0 w-60 h-60"  width={240} height={240}       src="/img/contact.jpg" alt="contactimg" />
                         <div className="mt-6 space-y-8 md:mt-8">
                             <p className="flex items-start -mx-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-2 text-blue-500 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -182,7 +177,6 @@ return (
                                     <textarea
                                         className="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                         placeholder="Message"
-                                        defaultValue={""}
                                         value={message}
                                         onChange={messageChange}
                                     />
@@ -202,4 +196,4 @@ return (
 )
 }
 
-export default page
+export default Contact
