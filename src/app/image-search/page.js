@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 
 
-const page = () => {
+const ImageSearch = () => {
 
     const [query, setQuery] = useState('')
     const [image, setImage] = useState([])
@@ -37,6 +37,7 @@ const page = () => {
         else {
             const data = await response.json()
             setImage(data.results)
+            toast.success("Data Fetched Sucessfully!!!!!")
 
             for (let i = 0; i < data.results.length; i++) {
                 console.log(data.results[i].urls.full)
@@ -106,4 +107,4 @@ const page = () => {
     )
 }
 
-export default page
+export default ImageSearch
