@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { connect } from "mongoose";
+// import { connect } from "mongoose";
+import connect from "@/dbConfig/dbcofig";
 import User from "@/models/userModels";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
@@ -16,7 +17,9 @@ export async function POST(req) {
 
     try {
         const UserData = await req.json();
+        console.log(process.env.MONGO_URL)
         console.log("Received UserData:", UserData);
+
 
         // Check if the user exists by email
         const userExists = await User.findOne({ mail: UserData.mail });
@@ -29,7 +32,7 @@ export async function POST(req) {
                 console.log("Login successful for user:", userExists.mail);
 
 
-            // Token Cretaion 
+                // Token Cretaion 
                 const token = jwt.sign(
                     {
                         id: userExists._id,
@@ -43,7 +46,7 @@ export async function POST(req) {
                 console.log(token)
 
                 // Send response 
-                return NextResponse.json({ message: "Login successful" ,token});
+                return NextResponse.json({ message: "Login successful", token });
             }
             else {
                 console.log("Invalid password");
