@@ -5,7 +5,7 @@ import User from "@/models/userModels";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 // import { POST as generateOtp } from '../generatOtp/route';
-
+import nodemailer from "nodemailer";
 
 
 connect()
@@ -29,56 +29,40 @@ export async function POST(req) {
                 mail: userData.mail,
                 password: hashedPassword,
             })
+            // Save the User to the database
             await newUser.save();
 
-            try {
-                // Generate OTP
-                const otp = otpGenerator.generate(5, { upperCase: false, specialChars: true });
 
-                // Create transporter for sending emails
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail', // Use your email service (e.g., 'gmail', 'yahoo', etc.)
-                    auth: {
-                        user: process.env.EMAIL, // Your email address
-                        pass: process.env.EMAIL_PASSWORD, // Your email password or app-specific password
-                    },
-                });
-
-                // Send the welcome mail to the user
-                const mailOptions = {
-                    from: process.env.EMAIL, // Sender's name and email
-                    to: userData.mail, // Recipient's email address
-                    subject: 'Registration Successfully With Next App',
-                    html: `
-                        <p>
-                            Registration Successfully With Next App. We are happy to see you.
-                            If you have any questions or need assistance, please don't hesitate to contact us.
-                        </p>
-                        <br>
-                        <p>OTP: ${otp}</p>
-                    `,
-                };
-
-                // Await sending mail and handle response
-                await transporter.sendMail(mailOptions);
-
-                console.log(`OTP sent: ${otp}`);
-                return NextResponse.json({ message: "Mail sent successfully" }, { status: 200 });
-
-            } catch (error) {
-                console.error("Error sending mail:", error);
-                return NextResponse.json({ message: "Mail not sent", error: error.message }, { status: 400 });
-            }
-
-
-            // Save the User to the database
-
+           
+            return NextResponse.json({ message: "User created successfully" }, { status: 201 });
         }
 
-        // Return success response
-        return NextResponse.json({ message: "User created successfully" }, { status: 201 });
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     catch (err) {
         console.log(err)
 
