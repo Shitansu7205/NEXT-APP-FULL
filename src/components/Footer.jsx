@@ -189,7 +189,7 @@ const Footer = () => {
       </li>
     </ul>
     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-      © 2024{" "}
+    &copy; 2024{" "}
       <Link href="https://www.linkedin.com/in/shitansu-kumar-gochhayat-91b7a5241" className="hover:underline">
        Shitansu
       </Link>
