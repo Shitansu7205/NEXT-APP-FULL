@@ -1,66 +1,99 @@
 'use client'
-import Link from 'next/link';
+
+import React from 'react';
 import { useState } from 'react';
-import { UserIcon } from '@heroicons/react/24/outline';
+import './style.css';
+import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation'
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false); // State for dropdown visibility
 
-export default function Navbar() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  const toggleUserMenu = () => setUserMenuOpen(!userMenuOpen);
-  const toggleServicesMenu = () => setServicesOpen(!servicesOpen);
+const router  = useRouter()
+
+
+
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const toggleCategory = () => {
+    setCategoryOpen(!categoryOpen);
+  };
+
+
+
+
+
+
+  const logout = async () => {
+    try {
+      const response = await fetch("/api/users/logout", {
+        method: 'POST', // Make sure you're using POST for logout
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Redirect to login page after successful logout
+        toast.success('Logout Successfully');
+        router.push('/login')
+      } else {
+        const data = await response.json();
+        console.log(data);
+        toast.error(data.message || "Logout Failed");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      toast.error("An error occurred during logout");
+    }
+  };
+
 
   return (
-    <nav className="bg-white dark:bg-gray-900 sticky top-0 z-20 shadow-lg">
-      <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
-        <Link href="/" className="flex items-center space-x-3">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Brand</span>
-        </Link>
-        <div className="flex items-center space-x-3">
-          <button onClick={toggleUserMenu} className="relative">
-            <UserIcon className="h-6 w-6 text-gray-800 dark:text-white" />
-            {userMenuOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md z-10">
-                <Link href="/login" className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link>
-                <Link href="/logout" className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Logout</Link>
-                <Link href="/profile" className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Profile</Link>
-              </div>
-            )}
-          </button>
-          <button className="md:hidden" onClick={toggleServicesMenu}>
-            <span className="text-gray-900 dark:text-white">Services</span>
-          </button>
-          <div className="hidden md:flex md:order-1">
-            <ul className="flex space-x-8">
-              <li>
-                <Link href="/" className="text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Home</Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">About</Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">About</Link>
-              </li>
-              <li className="relative" onMouseEnter={toggleServicesMenu} onMouseLeave={toggleServicesMenu}>
-                <button className="text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                  Services
-                </button>
-                {servicesOpen && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md z-10">
-                    <Link href="/service1" className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Weather App</Link>
-                    <Link href="/service2" className="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Food Recipe App</Link>
-                  </div>
-                )}
-              </li>
-              <li>
-                <Link href="/contact-us" className="text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Contact</Link>
-              </li>
-            </ul>
-          </div>
+    <nav className="navbar">
+      <div className="navbar-container container">
+        <input
+          type="checkbox"
+          id="toggle-menu"
+          checked={menuOpen}
+          onChange={toggleMenu}
+        />
+        <div className="hamburger-lines" onClick={toggleMenu}>
+          <span className={`line line1 ${menuOpen ? 'open' : ''}`}></span>
+          <span className={`line line2 ${menuOpen ? 'open' : ''}`}></span>
+          <span className={`line line3 ${menuOpen ? 'open' : ''}`}></span>
         </div>
+        <ul className={`menu-items ${menuOpen ? 'open' : ''}`}>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="#">About</Link></li>
+          <li className={`dropdown ${categoryOpen ? 'open' : ''}`} onClick={toggleCategory}>
+            <Link href="#">Services<span className={`dropdown-icon ${categoryOpen ? 'open' : ''}`} style={{ fontSize: "15px" }}>▼</span></Link>
+            <ul className={`dropdown-menu ${categoryOpen ? 'open' : ''}`}>
+              <li><Link href="/weather-app">Weather App</Link></li>
+              <li><Link href="/food-recipe">Food Receipe App</Link></li>
+              <li><Link href="/image-search">Image Search App</Link></li>
+            </ul>
+          </li>
+          <li><Link href="/contact-us">Contact</Link></li>
+          <li>
+            <Link href='/login'><button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow  h-10 rounded-md px-8 signin-btn" >Sign In</button></Link>
+          </li>
+          <li>
+            <Link href='/login'><button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow  h-10 rounded-md px-8 signin-btn" onClick={logout}>Log Out</button></Link>
+          </li>
+        </ul>
+
+        <h1 className="logo">NEXT</h1>
+
+
+
       </div>
     </nav>
   );
-}
+};
+export default Navbar;

@@ -1,0 +1,213 @@
+
+
+/* Navbar styles */
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+    display: none;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar {
+    box-shadow: 0px 5px 10px 0px #000000;
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    /* opacity: 0.85; */
+    top: 0px;
+    z-index: 100;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+}
+
+.menu-items {
+    order: 2;
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.logo {
+    order: 1;
+    font-size: 2.3rem;
+}
+
+.menu-items li {
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.3rem;
+    position: relative; /* Needed for dropdown positioning */
+}
+
+.navbar a {
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #000000;
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 151%;
+    left: 0;
+    z-index: 9999;
+    background-color: rgb(31, 41, 55);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    padding:0 0;
+    min-width: 200px;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    padding: 0.8rem;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show dropdown when open */
+.dropdown.open .dropdown-menu {
+    display: flex;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .navbar {
+        opacity: 0.95;
+    }
+
+    .navbar-container input[type="checkbox"],
+    .navbar-container .hamburger-lines {
+        display: block;
+    }
+
+    .navbar-container {
+        display: block;
+        position: relative;
+        height: 64px;
+    }
+
+    .navbar-container input[type="checkbox"] {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 30px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .navbar-container .hamburger-lines {
+        display: block;
+        height: 28px;
+        width: 35px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .navbar-container .hamburger-lines .line {
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+        background: #333;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .open {
+        transform: rotate(45deg);
+    }
+
+    .navbar-container .hamburger-lines .line2.open {
+        transform: scaleY(0);
+    }
+
+    .navbar-container .hamburger-lines .line3.open {
+        transform: rotate(-45deg);
+    }
+
+    .navbar .menu-items {
+        padding-top: 100px;
+        background: #fff;
+        height: 100vh;
+        max-width: 265px;
+        transform: translateX(-150%);
+        display: flex;
+        flex-direction: column;
+        margin-left: -53px;
+        padding-left: 0px;
+        transition: transform 0.5s ease-in-out;
+        box-shadow: 5px 0px 10px 0px #aaa;
+        overflow: scroll;
+    }
+
+    .navbar .menu-items.open {
+        transform: translateX(0);
+    }
+
+    .navbar .menu-items li {
+        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    /* Hide logo when hamburger menu is opened */
+    .navbar-container input[type="checkbox"]:checked ~ .logo {
+        display: none;
+    }
+}
+
+
+
+
+.signin-btn{
+    background: rgb(31 40 55);
+    color: #ffffff;
+}
+.signin-btn :hover{
+    color: rgb(31 40 55) !important;
+    background-color: #ffffff !important;
+}

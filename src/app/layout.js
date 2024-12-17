@@ -3,9 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import NavbarComponent from "@/components/NavbarComponent";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Navbar from "@/components/NavbarComponent";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -68,7 +69,7 @@ export default function RootLayout({ children }) {
 
 
         {/* nav bar started here */}
-        <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+        {/* <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
               <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
@@ -95,7 +96,9 @@ export default function RootLayout({ children }) {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
+
+<Navbar/>
         {/* nav bar started here */}
         {children}
         <ToastContainer />
