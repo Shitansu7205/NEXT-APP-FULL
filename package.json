@@ -33,6 +33,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^7.0.2",
     "react-toastify": "^10.0.6",
     "reactjs-otp-input": "^2.0.10",
     "tailwind-merge": "^2.5.4",

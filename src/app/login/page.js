@@ -1,16 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie'; // Ensure this import is present
 
 
 
-const Login = () => {
+const Login = (prop) => {
     const [mail, setMail] = useState('')
     const [password, setPassword] = useState('')
-
 
     const router = useRouter();
 
@@ -50,6 +48,7 @@ const Login = () => {
                 Cookies.set("jwttoken", tokendata, { expires: 1, secure: false });      //set the cookie and store in to the Browser
 
                 toast.success(data.message || 'Login Successfully');
+
                 router.push('/profile')
             } else {
                 const errorData = await response.json(); // Parse the error response
