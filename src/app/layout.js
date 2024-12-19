@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import NavbarComponent from "@/components/NavbarComponent";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Navbar from "@/components/NavbarComponent";
@@ -64,19 +65,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{  }}
       >
-        {/* Navbar Component */}
+
         <Navbar />
-        
-        {/* Main Content */}
-        <main>
-          {children} {/* Render the child components */}
-        </main>
-        
-        {/* Toast Notifications */}
+        {/* nav bar started here */}
+        {children}
         <ToastContainer />
-        
+
         {/* Footer Component */}
         <Footer />
       </body>

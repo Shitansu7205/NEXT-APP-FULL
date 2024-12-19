@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie'; // Ensure this import is present
-
+// import { cookies } from 'next/headers';
 
 
 const Login = (prop) => {
@@ -71,12 +71,25 @@ const Login = (prop) => {
 
 
 
+    // FUNCTION FOR LOGOUT FUNCTIONALITY
+    const logout = () => {
+        try {
+            Cookies.remove("jwttoken"); // Remove the token
+            toast.success("Log Out Sucessufully")
+            router.push('/signup')
 
+        } catch (error) {
+            toast.error("Unable to Log Out ")
+            toast.warn("Try After Some Time")
+        }
+
+
+    }
 
 
     return (
         <>
-            <form className="max-w-sm mx-auto mt-32 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 form-signin" onSubmit={getSubmit} >
+            <form className="max-w-sm mx-auto mt-32 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800" onSubmit={getSubmit}>
                 <h5 className="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white text-center">
                     Sign In
                 </h5>

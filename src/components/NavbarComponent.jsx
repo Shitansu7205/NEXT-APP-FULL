@@ -56,7 +56,7 @@ const router  = useRouter()
 
   return (
     <nav className="navbar">
-      <div className="navbar-container container">
+      <div className="navbar-container container" style={{display:"flex", justifyContent:"space-around"}}>
         <input
           type="checkbox"
           id="toggle-menu"

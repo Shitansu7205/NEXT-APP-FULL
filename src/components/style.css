@@ -204,8 +204,8 @@
 
 
 .signin-btn{
-    background: rgb(31 40 55);
-    color: #ffffff;
+    background: rgb(31 40 55) !important;
+    color: #ffffff !important;
 }
 .signin-btn :hover{
     color: rgb(31 40 55) !important;
