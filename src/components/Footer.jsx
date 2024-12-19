@@ -158,7 +158,7 @@ const Footer = () => {
     Next App
     </a>
     <p className="my-6 text-gray-500 dark:text-gray-400">
-    Whether it's creating a fast, SEO-friendly static site, or a highly dynamic web app, I am passionate about delivering high-quality products that drive results.
+    Whether it&apos;s creating a fast, SEO-friendly static site, or a highly dynamic web app, I am passionate about delivering high-quality products that drive results.
     </p>
     <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
       <li>
@@ -189,7 +189,7 @@ const Footer = () => {
       </li>
     </ul>
     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-    "&copy;" 2024{" "}
+
       <Link href="https://www.linkedin.com/in/shitansu-kumar-gochhayat-91b7a5241" className="hover:underline">
        Shitansu
       </Link>
